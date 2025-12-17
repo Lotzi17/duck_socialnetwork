@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lab2_map.controller.DSNController"
+            fitToWidth="true">
+
+    <VBox spacing="16">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label text="Duck Social Network"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+        <!-- view ducks + filter-->
+        <HBox spacing="10">
+            <Button fx:id="btnViewDucks" text="View Ducks"/>
+            <Label text="Filter:"/>
+            <ComboBox fx:id="comboDuckType" prefWidth="140"/>
+            <Button fx:id="btnApplyFilter" text="Apply"/>
+        </HBox>
+
+        <!-- table -->
+        <TableView fx:id="duckTable" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="colUsername" text="Username" prefWidth="150"/>
+                <TableColumn fx:id="colType" text="Duck Type" prefWidth="150"/>
+                <TableColumn fx:id="colSpeed" text="Speed" prefWidth="120"/>
+                <TableColumn fx:id="colEndurance" text="Endurance" prefWidth="120"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnPrevPage" text="Previous"/>
+            <Label fx:id="lblPageNumber" text="Page 1"/>
+            <Button fx:id="btnNextPage" text="Next"/>
+        </HBox>
+
+        <Separator/>
+
+        <!-- buttons required by controller -->
+        <Button fx:id="btnShowAddPerson" text="Add Person"/>
+        <TitledPane fx:id="paneAddPerson" text="Add Person" expanded="false">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <TextField fx:id="addUsernamePerson" promptText="Username"/>
+                <TextField fx:id="addEmailPerson" promptText="Email"/>
+                <PasswordField fx:id="addPasswordPerson" promptText="Password"/>
+                <TextField fx:id="addFirstName" promptText="First name"/>
+                <TextField fx:id="addLastName" promptText="Last name"/>
+                <DatePicker fx:id="addBirthDate"/>
+                <TextField fx:id="addOccupation" promptText="Occupation"/>
+                <TextField fx:id="addEmpathy" promptText="Empathy level"/>
+                <Button fx:id="btnAddPerson" text="Add Person"/>
+            </VBox>
+        </TitledPane>
+
+        <Button fx:id="btnShowAddDuck" text="Add Duck"/>
+        <TitledPane fx:id="paneAddDuck" text="Add Duck" expanded="false">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <TextField fx:id="addUsernameDuck" promptText="Username"/>
+                <TextField fx:id="addEmailDuck" promptText="Email"/>
+                <PasswordField fx:id="addPasswordDuck" promptText="Password"/>
+                <ComboBox fx:id="addDuckType" promptText="Duck type"/>
+                <TextField fx:id="addSpeed" promptText="Speed"/>
+                <TextField fx:id="addEndurance" promptText="Endurance"/>
+                <Button fx:id="btnAddDuck" text="Add Duck"/>
+            </VBox>
+        </TitledPane>
+
+        <Separator/>
+
+        <!-- remove user -->
+        <HBox spacing="10">
+            <TextField fx:id="removeUserId" promptText="User ID to remove" prefWidth="200"/>
+            <Button fx:id="btnRemoveUser" text="Remove User"/>
+        </HBox>
+
+        <Separator/>
+
+        <!-- friendships -->
+        <Label text="Friendships" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+        <HBox spacing="10">
+            <TextField fx:id="friendU1" promptText="User1 ID" prefWidth="120"/>
+            <TextField fx:id="friendU2" promptText="User2 ID" prefWidth="120"/>
+            <Button fx:id="btnAddFriend" text="Add Friendship"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <TextField fx:id="removeFriendId" promptText="Friendship ID" prefWidth="160"/>
+            <Button fx:id="btnRemoveFriend" text="Remove Friendship"/>
+        </HBox>
+
+        <Separator/>
+
+        <!-- network analysis -->
+        <Label text="Network Analysis" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+        <HBox spacing="10">
+            <Button fx:id="btnCountCommunities" text="Count Communities"/>
+            <Button fx:id="btnSociableCommunity" text="Most Sociable Community"/>
+        </HBox>
+
+        <TextArea fx:id="analysisOutput" prefRowCount="6" wrapText="true"/>
+
+    </VBox>
+
+</ScrollPane>

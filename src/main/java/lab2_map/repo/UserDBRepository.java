@@ -4,6 +4,7 @@ import lab2_map.connections.DatabaseConnection;
 import lab2_map.domain.*;
 import lab2_map.util.Page;
 import lab2_map.util.Pageable;
+import lab2_map.util.PasswordUtil;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -216,5 +217,28 @@ public class UserDBRepository {
         }
 
         return null;
+    }
+    public Long authenticate(String username, String rawPassword) {
+        String sql = "SELECT id, password FROM users WHERE username = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, username);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    return null; // user inexistent
+                }
+
+                long id = rs.getLong("id");
+                String storedHash = rs.getString("password");
+                String inputHash = PasswordUtil.hash(rawPassword);
+
+                return storedHash != null && storedHash.equals(inputHash) ? id : null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
